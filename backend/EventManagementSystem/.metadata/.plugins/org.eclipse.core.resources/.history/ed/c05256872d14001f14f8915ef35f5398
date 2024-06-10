@@ -1,0 +1,8 @@
+spring.application.name=EventManagementSystemMicroService
+spring.datasource.url=jdbc:mySql://localhost:3306/EventManage
+spring.datasource.username=root
+spring.datasource.password=root
+server.port=8081
+spring.jpa.hibernate.ddl-auto=create
+#.main.web-application-type=REACTIVE
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka

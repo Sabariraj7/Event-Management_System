@@ -1,0 +1,33 @@
+package com.eventmangementsystem.service.impl;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.eventmangementsystem.entity.Discount;
+import com.eventmangementsystem.repository.DiscountRepository;
+import com.eventmangementsystem.service.DiscountService;
+
+@Service
+public class DiscountService {
+
+    @Autowired
+    private DiscountRepository discountRepository;
+
+    @Override
+    public List<Discount> getAllDiscounts() {
+        return discountRepository.findAll();
+    }
+
+    @Override
+    public Discount getDiscountById(int id) {
+        return discountRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Discount saveDiscount(Discount discount) {
+        return discountRepository.save(discount);
+    }
+
+    @Override
+    public void deleteDiscount(int id) {
+        discountRepository.deleteBy

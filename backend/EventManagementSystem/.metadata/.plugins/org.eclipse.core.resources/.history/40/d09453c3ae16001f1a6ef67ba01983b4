@@ -1,0 +1,95 @@
+package com.eventmangementsystem.entity;
+
+import java.sql.Timestamp; // Corrected import for Timestamp
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+
+@Entity(name = "discount")
+public class Discount {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int offerId;
+    
+    @Column(name = "offer_name", nullable = false)
+    private String offerName;
+    
+    @Column(name = "offer_percentage", nullable = false)
+    private int offerPercentage;
+    
+    @Column(name = "offer_eligibility", nullable = false)
+    private int offerEligibility;
+    
+    @Column(name = "start_date", nullable = false)
+    private Timestamp startDate;
+    
+    @Column(name = "end_date", nullable = false)
+    private Timestamp endDate;
+
+    // Getters and Setters
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
+    }
+
+    public String getOfferName() {
+        return offerName;
+    }
+
+    public void setOfferName(String offerName) {
+        this.offerName = offerName;
+    }
+
+    public int getOfferPercentage() {
+        return offerPercentage;
+    }
+
+    public void setOfferPercentage(int offerPercentage) {
+        this.offerPercentage = offerPercentage;
+    }
+
+    public int getOfferEligibility() {
+        return offerEligibility;
+    }
+
+    public void setOfferEligibility(int offerEligibility) {
+        this.offerEligibility = offerEligibility;
+    }
+
+    public Timestamp getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timestamp getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "offerId=" + offerId +
+                ", offerName='" + offerName + '\'' +
+                ", offerPercentage=" + offerPercentage +
+                ", offerEligibility=" + offerEligibility +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
+    public Discount() {
+    	
+    }
+}

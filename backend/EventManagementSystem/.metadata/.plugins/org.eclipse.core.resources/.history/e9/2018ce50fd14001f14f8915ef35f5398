@@ -1,0 +1,61 @@
+package com.eventmangementsystem.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eventmangementsystem.dao.BookingDAO;
+import com.eventmangementsystem.dao.EventDAO;
+import com.eventmangementsystem.dao.UserDAO;
+import com.eventmangementsystem.entity.Booking;
+import com.eventmangementsystem.entity.Event;
+import com.eventmangementsystem.entity.User;
+
+@Service
+public class BookingService {
+    @Autowired
+    private BookingDAO bookingDAO;
+
+    @Autowired
+    private EventDAO eventDAO;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    public List<Booking> getAllBookings() {
+        return bookingDAO.getAllBookings();
+    }
+
+    public Booking getBooking(int bookingId) {
+        return bookingDAO.getBooking(bookingId);
+    }
+
+    public void createBooking(Booking booking) {
+        Event event = eventDAO.getEvent(booking.getEvent().getEventId());
+        User user = userDAO.getUser(booking.getUser().getUserId());
+        
+        if (event != null && user != null) {
+            booking.setEvent(event);
+            booking.setUser(user);
+            bookingDAO.createBooking(booking);
+        } else {
+            throw new IllegalArgumentException("Invalid Event ID or User ID");
+        }
+    }
+
+    public Booking updateBooking(int eventId, Booking updatedBooking) {
+        Booking existingBooking = bookingDAO.getBooking(eventId);
+        if (existingBooking != null) {
+            existingBooking.setCustomername(updatedBooking.getCustomername());
+            existingBooking.setNumberoftickets(updatedBooking.getNumberoftickets());
+            // Update other fields as needed
+            return bookingDAO.updateBooking(existingBooking);
+        }
+        return null; // Or throw an exception
+    }
+
+    public void removeBooking(int eventId) {
+        bookingDAO.removeBooking(eventId);
+    }
+}

@@ -1,0 +1,5 @@
+package com.eventmangementsystem.dao;
+
+public class RoleDAO {
+
+}

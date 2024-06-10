@@ -1,0 +1,5 @@
+package com.eventmangementsystem.entity;
+
+public class PymentDTO {
+
+}

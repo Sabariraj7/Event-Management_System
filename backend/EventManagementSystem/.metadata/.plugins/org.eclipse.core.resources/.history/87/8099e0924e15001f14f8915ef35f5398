@@ -1,0 +1,63 @@
+package com.eventmangementsystem.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eventmangementsystem.dao.BookingDAO;
+import com.eventmangementsystem.entity.Booking;
+import com.eventmangementsystem.entity.BookingDTO;
+import com.eventmangementsystem.entity.Event;
+import com.eventmangementsystem.repository.EventRepository;
+
+@Service
+public class BookingService {
+    @Autowired
+    private BookingDAO bookingDAO;
+    @Autowired
+    private EventRepository eventRepository;
+
+    public List<Booking> getAllBookings() {
+        return bookingDAO.getAllBookings();
+    }
+
+    public Booking getBooking(int bookingId) {
+        return bookingDAO.getBooking(bookingId);
+    }
+
+    public void createBooking(BookingDTO bookingDTO) {
+        Event event = eventRepository.findById(bookingDTO.getEventId())
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+        
+        Booking booking = new Booking();
+        booking.setEvent(event);
+        booking.setEventName(bookingDTO.getEventName());
+        booking.setCustomername(bookingDTO.getCustomerName());
+        booking.setCustomernumber(bookingDTO.getCustomerNumber());
+        booking.setNumberoftickets(bookingDTO.getNumberOfTickets());
+        booking.setBookingstatus(bookingDTO.getBookingStatus());
+        booking.setRole(bookingDTO.getRole());
+
+        bookingDAO.createBooking(booking);
+    }
+
+    public Booking updateBooking(int bookingId, Booking updatedBooking) {
+        Booking existingBooking = bookingDAO.getBooking(bookingId);
+        if (existingBooking != null) {
+        	existingBooking.setEventName(updatedBooking.getEventName());
+            existingBooking.setCustomername(updatedBooking.getCustomername());
+            existingBooking.setNumberoftickets(updatedBooking.getNumberoftickets());
+            existingBooking.setCustomernumber(updatedBooking.getCustomernumber());
+            existingBooking.setBookingstatus(updatedBooking.isBookingstatus());
+            existingBooking.setRole(updatedBooking.getRole());
+
+            return bookingDAO.updateBooking(existingBooking);
+        }
+        return null; // Or throw an exception
+    }
+
+    public void removeBooking(int bookingId) {
+        bookingDAO.removeBooking(bookingId);
+    }
+}

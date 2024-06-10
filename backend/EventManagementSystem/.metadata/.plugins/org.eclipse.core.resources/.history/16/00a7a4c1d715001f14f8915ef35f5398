@@ -1,0 +1,31 @@
+package com.eventmangentsystem.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.eventmangentsystem.entity.Payment;
+import com.eventmangentsystem.repository.PaymentRepository;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class PaymentService {
+    
+    @Autowired
+    private PaymentRepository paymentRepository;
+    
+    public Payment savePayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
+    
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
+    }
+    
+    public Optional<Payment> getPaymentById(int paymentId) {
+        return paymentRepository.findById(paymentId);
+    }
+    
+    public void deletePayment(int paymentId) {
+        paymentRepository.deleteById(paymentId);
+    }
+}

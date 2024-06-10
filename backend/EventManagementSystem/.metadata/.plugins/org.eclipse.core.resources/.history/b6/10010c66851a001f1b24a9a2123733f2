@@ -1,0 +1,37 @@
+//package com.eventmangementsystem.dao;
+//
+//import com.eventmangementsystem.entity.Discount;
+//import com.eventmangementsystem.repository.DiscountRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Repository;
+//
+//import java.util.List;
+//import java.util.Optional;
+//
+//@Repository
+//public class DiscountDAO {
+//
+//    @Autowired
+//    private DiscountRepository discountRepository;
+//
+//    
+//    public List<Discount> getAllOffers() {
+//        return discountRepository.findAll();
+//    }
+//
+//    
+//    public Discount getOfferById(int offerId) {
+//        Optional<Discount> optionalOffer = discountRepository.findById(offerId);
+//        return optionalOffer.orElse(null);
+//    }
+//
+//   
+//    public Discount saveOffer(Discount discount) {
+//        return discountRepository.save(discount);
+//    }
+//
+//    
+//    public void deleteOffer(int offerId) {
+//        discountRepository.deleteById(offerId);
+//    }
+//}

@@ -1,0 +1,40 @@
+package com.eventmangementsystem.service;
+
+import com.eventmangementsystem.dao.OfferDao;
+import com.eventmangementsystem.entity.Offer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class OfferService {
+
+    @Autowired
+    private OfferDAO offerDao;
+
+    @Override
+    public List<Offer> getAllOffers() {
+        return offerDao.getAllOffers();
+    }
+
+    @Override
+    public Offer getOfferById(int offerId) {
+        return offerDao.getOfferById(offerId);
+    }
+
+    @Override
+    public Offer createOffer(Offer offer) {
+        return offerDao.saveOffer(offer);
+    }
+
+    @Override
+    public Offer updateOffer(Offer offer) {
+        return offerDao.saveOffer(offer);
+    }
+
+    @Override
+    public void deleteOffer(int offerId) {
+        offerDao.deleteOffer(offerId);
+    }
+}

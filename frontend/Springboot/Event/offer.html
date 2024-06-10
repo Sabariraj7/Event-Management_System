@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Offers</title>
+    <link rel="stylesheet" href="offer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Management System - Offers</h1>
+        
+        <form id="offerForm">
+            <label for="offerName">Offer Name:</label>
+            <input type="text" id="offerName" name="offerName" required>
+
+            <label for="offerPercentage">Offer Percentage:</label>
+            <input type="number" id="offerPercentage" name="offerPercentage" required>
+
+            <label for="offerEligibility">Offer Eligibility:</label>
+            <input type="number" id="offerEligibility" name="offerEligibility" required>
+
+            <label for="startDate">Start Date:</label>
+            <input type="datetime-local" id="startDate" name="startDate" required>
+
+            <label for="endDate">End Date:</label>
+            <input type="datetime-local" id="endDate" name="endDate" required>
+
+            <button type="submit">Add Offer</button>
+        </form>
+
+        <table id="offersTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Percentage</th>
+                    <th>Eligibility</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Offers will be added here dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <script src="offer.js"></script>
+</body>
+</html>

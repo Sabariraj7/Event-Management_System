@@ -1,0 +1,5 @@
+package com.eventmangentsystem.entity;
+
+public class Payment {
+
+}

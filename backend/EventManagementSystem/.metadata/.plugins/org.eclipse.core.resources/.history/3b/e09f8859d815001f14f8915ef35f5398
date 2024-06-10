@@ -1,0 +1,5 @@
+package com.eventmangentsystem.dao;
+
+public class PaymentDAO {
+
+}

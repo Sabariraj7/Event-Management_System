@@ -1,0 +1,36 @@
+package com.eventmangementsystem.service.impl;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.eventmangementsystem.entity.Discount;
+import com.eventmangementsystem.dao.DiscountDAO;
+import com.eventmangementsystem.dao.DiscountDao;
+import com.eventmangementsystem.service.DiscountService;
+
+@Service
+public class DiscountService {
+
+    
+    private DiscountDAO discountDao;
+
+    
+    public List<Discount> getAllDiscounts() {
+        return discountDao.getAllDiscounts();
+    }
+
+    
+    public Discount getDiscountById(int id) {
+        return discountDao.getDiscountById(id);
+    }
+
+    
+    public Discount saveDiscount(Discount discount) {
+        return discountDao.saveDiscount(discount);
+    }
+
+    
+    public void deleteDiscount(int id) {
+        discountDao.deleteDiscount(id);
+    }
+}

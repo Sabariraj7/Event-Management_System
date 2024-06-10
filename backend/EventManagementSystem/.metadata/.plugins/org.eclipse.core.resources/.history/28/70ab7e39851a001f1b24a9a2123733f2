@@ -1,0 +1,60 @@
+//package com.eventmangementsystem.controller;
+//
+//import java.util.List;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.*;
+//
+//import com.eventmangementsystem.entity.Discount;
+//import com.eventmangementsystem.service.DiscountService;
+//
+//@RestController
+//@RequestMapping("/discount")
+//public class DiscountController {
+//
+//    @Autowired
+//    private DiscountService discountService;
+//
+//    @GetMapping("/all")
+//    public List<Discount> getAllDiscounts() {
+//        return discountService.getAllDiscounts();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Discount> getDiscountById(@PathVariable int id) {
+//        Discount discount = discountService.getDiscountById(id);
+//        if (discount == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(discount);
+//    }
+//
+//    @PostMapping("/add")
+//    public Discount createDiscount(@RequestBody Discount discount) {
+//        return discountService.saveDiscount(discount);
+//    }
+//
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<Discount> updateDiscount(@PathVariable int id, @RequestBody Discount discountDetails) {
+//        Discount discount = discountService.getDiscountById(id);
+//        if (discount == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        discount.setOfferName(discountDetails.getOfferName());
+//        discount.setOfferPercentage(discountDetails.getOfferPercentage());
+//        discount.setOfferEligibility(discountDetails.getOfferEligibility());
+//
+//        Discount updatedDiscount = discountService.saveDiscount(discount);
+//        return ResponseEntity.ok(updatedDiscount);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteDiscount(@PathVariable int id) {
+//        Discount discount = discountService.getDiscountById(id);
+//        if (discount == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        discountService.deleteDiscount(id);
+//        return ResponseEntity.noContent().build();
+//    }
+//}

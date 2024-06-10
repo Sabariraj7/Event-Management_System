@@ -1,0 +1,83 @@
+package com.eventmangementsystem.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import com.eventmangementsystem.entity.Booking;
+import com.eventmangementsystem.repository.BookingRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public class BookingDAO {
+
+    @Autowired
+    private BookingRepository bookingRepository;
+
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    public Booking getBooking(int bookingId) {
+        Optional<Booking> bookingOptional = bookingRepository.findById(bookingId);
+        return bookingOptional.orElse(null);
+    }
+
+    public void createBooking(Booking booking) {
+        bookingRepository.save(booking);
+    }
+
+    public Booking updateBooking(int bookingId, Booking updatedBooking) {
+        updatedBooking.setBookingId(bookingId);
+        return bookingRepository.save(updatedBooking);
+    }
+
+    public void removeBooking(int bookingId) {
+        bookingRepository.deleteById(bookingId);
+    }
+}
+
+
+//package com.eventmangementsystem.dao;
+//
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Repository;
+//
+//import com.eventmangementsystem.entity.Booking;
+//import com.eventmangementsystem.repository.BookingRepository;
+//
+//@Repository
+//public class BookingDAO {
+//    @Autowired
+//    private BookingRepository bookingRepository;
+//    
+//    
+//    public List<Booking> getAllBookings() {
+//        return bookingRepository.findAll();
+//    }
+//
+//    public Booking getBooking(int bookingId) {
+//    	
+//        return bookingRepository.findById(bookingId).orElse(null);
+//        
+//        
+//    }
+//
+//    public void createBooking(Booking booking) {
+//        bookingRepository.save(booking);
+//    }
+//
+//    public Booking updateBooking(Booking booking) {
+//        return bookingRepository.save(booking);
+//    }
+//
+//    public void removeBooking(int bookingId) {
+//        Booking booking = bookingRepository.findById(bookingId).orElse(null);
+//        if (booking != null) {
+//            bookingRepository.delete(booking);
+//        }
+//    }
+//}
+//

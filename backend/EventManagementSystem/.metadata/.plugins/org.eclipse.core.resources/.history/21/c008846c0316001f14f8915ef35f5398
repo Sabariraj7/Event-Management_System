@@ -1,0 +1,70 @@
+package com.eventmangementsystem.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eventmangementsystem.dao.EventDAO;
+import com.eventmangementsystem.entity.Event;
+
+@Service
+public class EventService {
+
+    @Autowired
+    private EventDAO eventDAO;
+
+    /**
+     * Get all events
+     *
+     * @return List of all events
+     */
+    public List<Event> getAllEvents() {
+        return eventDAO.getAllEvents();
+    }
+
+    /**
+     * Get an event by ID
+     *
+     * @param eventId The ID of the event
+     * @return The Event object if found
+     */
+    public Event getEvent(int eventId) {
+        return eventDAO.getEvent(eventId);
+    }
+
+    /**
+     * Create a new event
+     *
+     * @param event The event to create
+     */
+    public void createEvent(Event event) {
+        eventDAO.createEvent(event);
+    }
+
+    /**
+     * Update an existing event
+     *
+     * @param eventId The ID of the event to update
+     * @param updatedEvent The updated event data
+     * @return The updated Event object if found, otherwise null
+     */
+    public Event updateEvent(int eventId, Event updatedEvent) {
+        Event existingEvent = eventDAO.getEvent(eventId);
+        if (existingEvent != null) {
+            existingEvent.setName(updatedEvent.getName());
+            existingEvent.setLocation(updatedEvent.getLocation());
+            existingEvent.setTicketPrice(updatedEvent.getTicketPrice());
+            return eventDAO.updateEvent(existingEvent);
+        }
+        return null; // Or throw an exception if needed
+    }
+
+    /**
+     * Remove an event by ID
+     *
+     * @param eventId The ID of the event to remove
+     */
+    public void removeEvent(int eventId) {
+        eventDAO.removeEvent(eventId);
+    }
+}

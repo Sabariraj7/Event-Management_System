@@ -1,0 +1,5 @@
+package com.eventmangentsystem.service;
+
+public class PaymentService {
+
+}

@@ -1,0 +1,176 @@
+package com.eventmangementsystem.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Booking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_id")
+    private int bookingid; // Booking ID
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id", referencedColumnName = "eventId")
+    private Event event; // Event associated with the booking
+    
+    @Column(name = "event_name")
+    private String eventName; // Event name
+    
+    @Column(name = "customer_name")
+    private String customername; // Customer name
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    private User user; // User associated with the booking
+    
+    @Column(name = "customer_number")
+    private String customernumber; // Customer phone number
+    
+    @Column(name = "tot_tickets")
+    private int numberoftickets; // Number of tickets
+    
+    @Column(name = "booking_status")
+    private boolean bookingstatus; // Booking status
+    
+    @Column(name = "role")
+    private String role; // Role of the user making the booking
+    
+    @Column(name = "amount")
+    private int amount;
+
+    // Getters and setters
+    public int getAmount() {
+        return amount;
+    }
+    
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+    
+    public int getBookingid() {
+        return bookingid;
+    }
+
+    public void setBookingid(int bookingid) {
+        this.bookingid = bookingid;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getCustomername() {
+        return customername;
+    }
+
+    public void setCustomername(String customername) {
+        this.customername = customername;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCustomernumber() {
+        return customernumber;
+    }
+
+    public void setCustomernumber(String customernumber) {
+        this.customernumber = customernumber;
+    }
+
+    public int getNumberoftickets() {
+        return numberoftickets;
+    }
+
+    public void setNumberoftickets(int numberoftickets) {
+        this.numberoftickets = numberoftickets;
+    }
+
+    public boolean isBookingstatus() {
+        return bookingstatus;
+    }
+
+    public void setBookingstatus(boolean bookingstatus) {
+        this.bookingstatus = bookingstatus;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking [bookingid=" + bookingid + ", event=" + event + ", eventName=" + eventName + ", customername="
+                + customername + ", user=" + user + ", customernumber=" + customernumber + ", numberoftickets="
+                + numberoftickets + ", bookingstatus=" + bookingstatus + ", role=" + role + ", amount=" + amount + "]";
+    }
+
+    public Booking() {
+    }
+}
+
+
+//package com.eventmangementsystem.dao;
+//
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Repository;
+//
+//import com.eventmangementsystem.entity.Booking;
+//import com.eventmangementsystem.repository.BookingRepository;
+//
+//@Repository
+//public class BookingDAO {
+//    @Autowired
+//    private BookingRepository bookingRepository;
+//    
+//    // Retrieve all bookings
+//    public List<Booking> getAllBookings() {
+//        return bookingRepository.findAll();
+//    }
+//
+//    // Retrieve a booking by ID
+//    public Booking getBooking(int bookingId) {
+//        return bookingRepository.findById(bookingId).orElse(null);
+//    }
+//
+//    // Create a new booking
+//    public void createBooking(Booking booking) {
+//        bookingRepository.save(booking);
+//    }
+//
+//    // Update an existing booking
+//    public Booking updateBooking(Booking booking) {
+//        return bookingRepository.save(booking);
+//    }
+//
+//    // Remove a booking
+//    public void removeBooking(int bookingId) {
+//        Booking booking = bookingRepository.findById(bookingId).orElse(null);
+//        if (booking != null) {
+//            bookingRepository.delete(booking);
+//        }
+//    }
+//}

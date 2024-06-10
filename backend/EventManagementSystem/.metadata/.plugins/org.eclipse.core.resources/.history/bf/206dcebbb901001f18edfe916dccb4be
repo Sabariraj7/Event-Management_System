@@ -1,0 +1,63 @@
+package com.eventmanagement.event.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import com.eventmanagement.event.entity.Event;
+import com.eventmanagement.event.service.EventService;
+
+@RestController
+
+public class EventController {
+    @Autowired
+    private EventService eventService;
+    
+    @GetMapping("/")
+    public String home() {
+    	return "home";
+    }
+    @GetMapping("/add_event")
+    public String addEvent() {
+    	return "addEvent";
+    }
+    @GetMapping("/show_event")
+    public String showEvent() {
+    	return "showEvent";
+    }
+    
+    
+    @GetMapping("/events")
+    public List<Event> getAllEvents() {
+        return eventService.getAllEvents();
+    }
+
+    @GetMapping("/event/{eventId}")
+    public Event getEvent(@PathVariable int eventId) {
+        return eventService.getEvent(eventId);
+    }
+
+    @PostMapping("/event/add")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void createEvent(@RequestBody Event event) {
+        eventService.createEvent(event);
+    }
+
+    @PutMapping("/event/update/{eventId}")
+    public Event updateEvent(@PathVariable int eventId, @RequestBody Event event) {
+        return eventService.updateEvent(eventId, event);
+    }
+
+    @DeleteMapping("/event/delete/{eventId}")
+    public void removeEvent(@PathVariable int eventId) {
+        eventService.removeEvent(eventId);
+    }
+}
